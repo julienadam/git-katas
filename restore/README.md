@@ -1,32 +1,27 @@
-# Git kata: Restoring files
+# Git kata: Restaurer des fichiers
 
-We all make mistakes. Sometimes we make changes we'd rather not have made, or accidentally stage changes we didn't intend to stage.
-This is where `git restore` comes into play.
+On fait tous des erreurs. Parfois on fait des changements qu'on aurait préféré ne pas faire, ou alors on place en staging des changements par erreur.
 
-## Setup
+C'est à ce moment qu'intervient `git restore`.
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+## Mise en place
 
-## The task
+1. Lancez `source setup.sh` (ou `.\setup.ps1` sous PowerShell)
 
-1. Call `git status`\
- What changes were made to this repository?
-2. Restore the `foo.txt` file using `git restore foo.txt`
-3. Call `git status` again\
- What happened to `foo.txt`?
-4. Unstage the changes to `bar.txt` using `git restore --staged bar.txt`
-5. Call `git status` once more\
- What happened to `bar.txt`?
-6. Restore the `bar.txt` file using `git restore bar.txt`
-7. Call `git status` once more\
- What happened to `bar.txt`?
-8. Call `git log --oneline`\
- Do you spot the tag?
-9. Restore `foo.txt`'s contents to their previous version using `git restore -s v1.0.0 foo.txt`
-10. Call `git status` one last time\
- What happened to `foo.txt`?
+## Étapes
 
-## Useful commands
+1. Appelez `git status` Quels changements ont été faits sur ce dépôt ?
+2. Restaurez le fichier `foo.txt` en utilisant `git restore foo.txt`
+3. Appelez `git status` à nouveau. Que s'est-il passé sur `foo.txt`?
+4. Retirez du staging les modifications de `bar.txt` en utilisant `git restore --staged bar.txt`
+5. Appelez `git status` une fois encore. Que s'est-il passé sur `foo.txt`?
+6. Restaurez le fichier `bar.txt` en utilisant `git restore bar.txt`
+7. Appelez `git status` une fois encore.  Que s'est-il passé sur `foo.txt`?
+8. Appelez `git log --oneline`. Avez-vous vu le tag ?
+9. Restaurez le contenu de `foo.txt` à leur version précédente en utilisant `git restore -s v1.0.0 foo.txt`
+10. Appelez `git status` une fois encore. Que s'est-il passé sur `foo.txt`?
+
+## Commandes utiles
 
 - `git status`
 - `git log --oneline`
