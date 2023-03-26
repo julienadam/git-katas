@@ -1,33 +1,35 @@
-# Git Kata: Configuring Git
+# Git Kata: Configuration de Git
 
-This kata has no `setup.sh` script. Just read and follow along.
+Ce kata n'a pas de script `setup.sh`. Suivez simplement les instructions.
 
-## Downloading and Installing on Windows
+## Téléchargement et installation sous Windows
 
-* Download at [https://git-scm.com/download/win](https://git-scm.com/download/win) (or use [Chocolatey](https://chocolatey.org/))
-* Install using the pre-selected defaults
-* After installation, open Git Bash for following configuration steps
+* Téléchargez Git à cette adresse : [https://git-scm.com/download/win](https://git-scm.com/download/win) (ou utilisez [Chocolatey](https://chocolatey.org/))
+* Installez Git en utilisant les paramètres par défaut
+* Après installation, ouvrez Git Bash pour les étapes de configuration suivantes
 
-## Git Initial Configuration
+## Configuration initiale de Git
 
-Git wants to know who it should write as the committer of changes etc.
-In order to do that, configure user name and user email towards Git with the following commands:
+Git a besoin de savoir qui est la personne qui fait des modifications.
+
+Pour cela, vous devez configurer un nom et une adresse email avec les commandes : 
 
 1. `git config --global user.name "John Doe"`
 2. `git config --global user.email "johndoe@example.com`
 
-### Editor setup
+### Choix de l'éditeur
 
-Sometimes Git needs you to edit a file it creates e.g. the message of a commit you create.
-As default, Git is configured with VIM, but that has a steep learning curve, so you might be better off with another tool of yor liking:
+Parfois, Git a besoin d'éditer un fichier qu'il crée pour vous, par exemple, le message dans les commits que vous allez créer.
 
-If you want to use the cli based editor nano:
+Par défaut, Git est configuré avec l'éditeur Vim, qui a une courbe d'apprentissage assez raide. Si vous n'êtes pas familier avec Vim, vous pouvez choisir une autre éditeur de votre choix.
+
+Par exemple nano :
 - `git config --global core.editor nano`
 
-For the Windows peeps:
+Ou notepad, sous Windows :
 - `git config --global core.editor notepad`
 
-Or alternatively other tools you already are familiar with:
+Ou d'autres outils avec lesquels vous êtes à l'aise :
 
 - `git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`
 - `git config --global core.editor "atom --wait"`
@@ -35,22 +37,23 @@ Or alternatively other tools you already are familiar with:
 
 ### Aliases
 
-You can set up aliases as such:
+Vous pouvez mettre en place des alias de commande pour ne pas retaper les mêmes commandes longues et complexes à chaque fois :
 * `git config --global alias.lol 'log --oneline --graph --all'`
 
-This might be useful to you when you look at the Git graph.
-Paste that into your terminal, and try it out with `git lol`.
+Celli-ci pourra vous être utile quand vous voudrez regarder le graphe Git.
 
-More on aliases can be found in the alias kata.
+Lancez cette commande dans un terminal et essayez en lançant `git lol`.
 
-### SSH authentication
+D'autres alias seront proposés dans le kata sur les alias.
 
-- See https://help.github.com/articles/generating-an-ssh-key for details about authenticating against SSH-enabled repositories
-- Or run `ssh-keygen` to generate a SSH key pair in `%USERPROFILE%/.ssh/`:
+### Authentification SSH 
+
+- Consultez https://docs.github.com/fr/authentication/connecting-to-github-with-ssh pour les détails sur l'authentification avec des dépôts sécurisés avec SSH 
+- Ou lancez `ssh-keygen` pour générer une paire de clés SSH dans `%USERPROFILE%/.ssh/`:
 
   `ssh-keygen -t rsa -b 4096 -C "johndoe@example.com"`
 
-  This generates public/private keys named `id_rsa.pub`/`id_rsa`, respectively)
-- The public key `id_rsa.pub` needs to be uploaded to your repo server:
-  - For GitHub, this is in _Settings_ -> _SSH and GPG keys_
-  - For BitBucket server, this is in _Manage Account_ -> _SSH Keys_
+  (Ceci génère une paire de clé publique/privée nommées `id_rsa.pub`/`id_rsa`, respectivement)
+- La clé **publique** `id_rsa.pub` doit être alors enregistrée sur le serveur de dépôt :
+  - Pour GitHub, ce sera dans _Settings_ -> _SSH and GPG keys_
+  - Pour BitBucket, ce sera dans _Manage Account_ -> _SSH Keys_
