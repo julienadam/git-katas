@@ -1,48 +1,42 @@
-# Git Kata: Basic Ignore
-We'll work a bit with the `.gitignore` file in this kata.
-In this file you can specify both file extensions and folder structures that you do not want Git to track.
-You can still `git add` files and folder that are ignored in the `.gitignore` file.
+# Git Kata: Les bases de .gitignore
 
-We will also work with `git rm`, which is the Git remove command. `git rm` does just the same as removing a file from your working directory, and then staging that change by issuing a `git add filename` on the file that was just deleted.
-Sometimes you add a file by accident that was not meant for Git e.g. binary files, class files etc.
+Nous allons travailler avec le fichier `.gitignore` dans ce kata.
 
-If you want to signal to Git that a file needs to be removed from git, but still want it in your working directory, then use `git rm --cached` to issue a remove command on the staging area, but not in your working directory.
+Dans ce fichiers vous pouvez spécifier des fichiers, des extensions de fichier, des répertoires que vous ne voulez pas gérer avec git.
 
+Vous pouvez tout de même manuellement ajouter des fichiers avec git add, même s'ils ont été ignorés dans le fichier .gitignore
 
-## Setup:
+Nous travaillerons aussi avec `git rm`, qui est la commande de suppression de git. `git rm` est équivalent à effacer un fichier du répertoire de travail puis à mettre dans le staging la suppression en lançant la commande `git add nom_fichier`.
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+Parfois vous ajoutez par erreur un fichier qui n'aurait pas dû être dans git (ex. des binaires, des fichiers .class etc.)
 
-## The task
+Si vous voulez signaler à Git qu'un fichier doit être retiré de git, mais que vous voulez qu'il reste présent dans votre répertoire de travail, utilisez la commande `git rm --cached` pour demander la suppression du fichier dans le staging mais pas dans le répertoire de travail.
 
-1. Create a file with the name `foo.s`
-2. What is the output of `git status`?
-3. Create a `.gitignore` file in your working directory containing `*.s`
-4. What is the output of `git status`?
-5. Commit the `.gitignore` file
-6. Commit `file1.txt`
-7. Add `txt` files to `.gitignore` by adding a line in the file containing `*.txt`
-8. What does `git status` tell us?
-9. Change `file1.txt`
-10. What does `git status` tell us? Why was the file tracked even though the `txt` extension is in the ignore file?
-11. Make another text file in the repository, what does `git status` look like now? Why is it not tracked?
-12. Stage the removal of `file1.txt` with the command `git rm --cached`
-13. What does `git status` say?
-14. Create a new file called `file2.txt` and add the line `!file2.txt` to `.gitignore`. (See _note_ below)
-15. What does `git status` say? Can you think of a use-case for keeping track of a file although the extension is ignored?
+## Mise en place
 
-## Note
-If you are using `zsh` instead of `bash`(default on Mac and some Linux') then `echo "!file2.txt" >> .gitignore` will fail because of shell expansion. Either use an editor to modify the file or escape the `!` e.g. `echo "\!file2.txt" >> .gitignore`
+1. Lancez `source setup.sh` (ou `.\setup.ps1` sous PowerShell)
 
-## Useful commands
+## Étapes
+
+1. Créez un fichier nommé `foo.s`
+1. Qu'affiche `git status`?
+1. Créez un fichier `.gitignore` dans votre répertoire de travail contenant `*.s`
+1. Qu'affiche `git status`?
+1. Faites un commit du fichier `.gitignore`
+1. Faites un commit du fichier `file1.txt`
+1. Ajoutez les fichiers `txt` au `.gitignore` en ajoutant la ligne suivante `*.txt`
+1. Qu'affiche `git status`?
+1. Modifiez `file1.txt`
+1. Qu'affiche `git status`? Pourquoi le fichier est-il présent dans le suivi alors qu'on a ajouté les fichiers `txt` au fichier ignore ?
+1. Créez un autre fichier .txt dans le repository, qu'affiche `git status` maintenant ? Pourquoi n'est-t-il pas suivi ?
+1. Ajoutez au staging la suppression du fichier `file1.txt` avec `git rm --cached`
+1. Qu'affiche `git status`?
+1. Créez un nouveau fichier nommé `file2.txt` et ajoutez la ligne `!file2.txt` au fichier `.gitignore`.
+1. Qu'affiche `git status`? Pouvez-vous imaginer un cas d'utilisation pour suivre un fichier alors que l'extension est ignorée ?
+
+## Commandes utiles
 - `git rm`
 - `git add`
 - `git commit`
 - `git commit -m`
 - `git rm --cached`
-
-
-## Aliases
-You can set up aliases as such:
-`git config --global alias.lol 'log --oneline --graph --all'`
-This might be useful to you.
