@@ -1,22 +1,23 @@
-# Git Kata: Merge Conflict
+# Git Kata: Fusion avec conflit
 
-## Setup:
+## Mise en place
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-## The task
+## Étapes
 
-In this kata git cannot figure out how to merge the content added on `merge-conflict-branch1` with the content on `master`.
+Dans ce kata, git n'arrive pas à trouver un moyen de fusionner le contenu ajouté dans `merge-conflict-branch1` avec le contenu de `master`.
 
-Both changes need to be in master when you're done.
+A la fin, on veut que les 2 modifications soient présentes dans `master`.
 
-1. Use `git merge` to bring the changes from `merge-conflict-branch1` on to `master`.
-2. What does `git status` now report.
-3. Fix the conflict with your favorite editor.
-4. Follow the instructions in `git status` to complete the merge.
-5. What does `git log --oneline --graph` show?
+1. Utilisez `git merge` pour fusionner les changements de `merge-conflict-branch1` sur `master`.
+1. Que sort `git status` ?
+1. Résolvez le conflit avec votre éditeur favori, ou avec `git mergetool`
+1. Suivez les instructions dans `git status` pour terminer la fusion
+1. Que montre `git log --oneline --graph` ?
 
-## Relevant commands
+## Commandes utiles
+
 - `git merge`
 - `git status`
 - `git add`
