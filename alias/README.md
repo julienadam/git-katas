@@ -1,33 +1,32 @@
-# Git kata: Aliases
+# Git kata: Les alias
 
-While working, we tend to write a lot of commands. This can get tedious, especially when the commands are rather long. Git allows you to create an alias for commands, dramatically shortening the time spent typing them and reducing the risk of doing typos.
+Avec git on écrit beaucoup de commandes. Ceci peu rapidement devenir fastidieux, surtout pour des commandes avec beaucoup de paramètres. Git permet de créer des alias pour certaines commandes, ce qui raccourcit assez largement le temps passé à les taper et réduit le risque d'erreur de frappe.
 
-Aliases are stored in your git config and can thus be system, global or local. System is valid for every user on the machine, global config is tied to your user, while local config lives inside a specific repository.
+Les aliases sont stockés dans la configuration git et peuvent donc être accessibles au niveau système, global ou local. Système est valide pour tous les utilisateurs de la machine, global est la configuration liée à votre utilisateur, local est spécifique au dépôt.
 
-## Setup
+## Mise en place
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+1. Lancez `source setup.sh` (ou `.\setup.ps1` sous PowerShell)
 
-## The task
+## Étapes
 
-1. View your config by running `git config --list`
-2. Add a new global alias\
+1. Consultez votre configuration avec `git config --list`
+2. Ajoutez un nouvel alias avec \
  `git config --global alias.lol 'log --oneline --graph --all'`\
- This allows you to call `git lol` as an alternative to `git log --oneline --graph --all`
-3. Run your alias `git lol`
-4. Run the full command `git log --oneline --graph --all`\
-Are there any difference in the output?
-5. Create another alias, this time local, that lists commits where you are the author\
+ Il vous permet d'appeler `git lol` comme alternative à `git log --oneline --graph --all`
+3. Lancez l'alias `git lol`
+4. Lancez la commande complète `git log --oneline --graph --all`\
+Voyez-vous une différence dans la sortie ?
+5. Créez un nouvel alias, local cette fois, qui liste les commits dont vous être l'auteur \
 `git config --local alias.lome "log --author=\"$(git config --get user.name)\""`
-6. Run your alias `git lome`\
- What does it show?
-7. View your git config and its sources by running `git config --list --show-origin`\
- Can you find your alias configurations?
-8. Try running `git lome` in a different git repository\
- Does it work?
-9. Remove your `git lol` alias by running `git config --global --unset alias.lol`
+6. Lancez votre alias `git lome`\
+ Qu'affiche-t-il ?
+7. Affichez votre configuration git et leur source avec `git config --list --show-origin`\
+ Pouvez-vous trouvez les définitions de vos aliases ?
+8. Essayez de lancer `git lome` dans un dépôt différent. Cela fonctionne-t-il ?
+9. Retirez l'alias `git lol`avec `git config --global --unset alias.lol`
 
-## Useful commands
+## Commandes utiles
 
 - `git config --list`
 - `git config --list --show-origin`
