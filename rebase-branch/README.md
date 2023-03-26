@@ -1,24 +1,24 @@
-# Git Kata: rebase branch
+# Git Kata: Utiliser rebase
 
-## Setup
+## Mise en place
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-## The task
+## Étapes
 
-You again live in your own branch, this time we will be doing a bit of juggling with branches, to show how lightweight branches are in git.
+A nouveau, vous êtes dans une branche dédiée, cette fois nous allons jongler entre plusieurs branches pour démontrer à quel point les branches sont légères avec Git.
 
-1. Which branches exist?
-2. Look at the log for the master branch
-3. Switch to the uppercase branch
-4. How does the log compare to the log on the master branch?
-5. Rebase your uppercase branch with the master (`git rebase master`)
-6. What did just happen? Draw it!
-7. Now switch to the master branch
-8. Merge uppercase into master
-9. What does the log look like now?
+1. Quelles sont les branches disponibles ?
+1. Affichez l'historique de la branche master
+1. Placez vous sur la branche `uppercase`
+1. Comparez l'historique avec celui de la branche `master` ?
+1. Faites un rebase de la branche `uppercase` sur `master` (`git rebase master`)
+1. Que s'est-il passé ? Dessinez le !
+1. Placez vous maintenant sur la branche `master`
+1. Fusionnez la branche `uppercase` dans `master`
+1. A quoi ressemble l'historique maintenant ?
 
-## Useful commands
+## Commandes utiles
 
 - `git switch <branch-name>`
 - `git rebase <branch-name>`
