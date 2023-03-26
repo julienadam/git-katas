@@ -1,62 +1,62 @@
-# Git Kata: Basic Staging
+# Git Kata: Les bases du *staging*
 
-This kata will examine the staging area of git.
+Ce kata est consacré à l'examen de la *staging area* (zone de transit)
 
-In git we are working with three different areas:
+Dans git on travaille sur 3 zones distinctes :
 
-* The working directory where you are making your changes
-* The staging area where all changes you have added through `git add` will stay
-* The repository where every commit ends up, making your history. To put your staged changes in here you issue the `git commit` command.
+* Le répertoire de travail où l'on va faire nos changements
+* La zone de *staging* où résident les changements qu'on a ajouté via la commande `git add` 
+* Le dépôt (*repository*) où sont stockés les *commits*, formant l'historique. Pour y transférer les changements depuis la zone de *staging*, on utilise la commande `git commit`
 
-A file can have changes both in the working directory and staging area at the same time.
-These changes do not have to be the same.
+Un fichier peut avoir des changements à la fois dans le répertoire de travail et dans la zone de *staging*. Ces changements ne sont pas nécessairement les mêmes
 
-We will also work with `git restore` to restore the staged changes of a file, and `git checkout` to return a file to a previous state.
+On travaillera aussi avec `git restore` pour rétablir les changements mis en *staging*, et `git checkout` pour rétablir un fichier dans un état précédent.
 
-## Setup
+## Mise en place
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-## The task
+## Étapes
 
-You live in your own repository. There is a file called `file.txt`.
+Vous travaillez dans votre propre repository. Vous y trouverez un fichier nommé `file.txt`.
 
-1. What's the content of `file.txt`?
-2. Overwrite the content in `file.txt`: `echo 2 > file.txt` to change the state of your file in the working directory (or `sc file.txt '2'` in PowerShell)
-3. What does `git diff` tell you?
-4. What does `git diff --staged` tell you? why is this blank?
-5. Run `git add file.txt` to stage your changes from the working directory.
-6. What does `git diff` tell you?
-7. What does `git diff --staged` tell you?
-8. Overwrite the content in `file.txt`: `echo 3 > file.txt` to change the state of your file in the working directory (or `sc file.txt '3'` in PowerShell).
-9. What does `git diff` tell you?
-10. What does `git diff --staged` tell you?
-11. Explain what is happening
-12. Run `git status` and observe that `file.txt` are present twice in the output.
-13. Run `git restore --staged file.txt` to unstage the change
-14. What does `git status` tell you now?
-15. Stage the change and make a commit
-16. What does the log look like?
-17. Overwrite the content in `file.txt`: `echo 4 > file.txt` (or `sc file.txt '4'` in PowerShell)
-18. What is the content of `file.txt`?
-19. What does `git status` tell us?
-20. Run `git restore file.txt`
-21. What is the content of `file.txt`?
-22. What does `git status` tell us?
+1. Quel est le contenu de `file.txt`?
+2. Écrasez le contenu de `file.txt`: `echo 2 > file.txt` afin de changer l'état du fichier dans le répertoire de travail (`sc file.txt '2'` sous PowerShell)
+3. Que vous dit `git diff` ? Pourquoi ?
+4. Que vous dit `git diff --staged` ? Pourquoi est-ce vide ?
+5. Lancez `git add file.txt` pour mettre le changement dans la zone de *staging* depuis le répertoire de travail.
+6. Que vous dit `git diff` ?
+7. Que vous dit  `git diff --staged` ?
+8. Écrasez le contenu de `file.txt`: `echo 3 > file.txt` afin de changer l'état du fichier dans le répertoire de travail (`sc file.txt '3'` sous PowerShell).
+9. Que vous dit `git diff` ?
+10. Que vous dit  `git diff --staged` ?
+11. Expliquez ce qui se passe
+12. Lancez `git status` et observez que `file.txt` est présent 2 fois dans la sortie.
+13. Lancez `git restore --staged file.txt` pour retirer les changements du *staging*
+14. Que vous dit `git status` maintenant ?
+15. Ajoutez le changement au *staging* et faites un *commit* (`git commit`)
+16. A quoi ressemble l'historique ? (`git log`)
+17. Écrasez le contenu de `file.txt`: `echo 4 > file.txt` (`sc file.txt '4'` sous PowerShell)
+18. Quel est le contenu de `file.txt`?
+19. Que vous dit `git status` ?
+20. Lancez `git restore file.txt`
+21. Quel est le contenu de `file.txt`?
+22. Que vous dit `git status` ?
 
-## Useful commands
+## Commandes utiles
 
 - `git add`
 - `git commit`
-- `git commit -m "My lazy short commit message"`
+- `git commit -m "Mon message rapide"`
 - `git log`
 - `git log -n 5`
 - `git log --oneline`
 - `git log --oneline --graph`
 - `git restore --staged`
 
-## Aliases
+## Alias de commandes
 
-You can set up aliases as such:
+Vous pouvez mettre en place des alias de commandes comme ceci :
 `git config --global alias.lol 'log --oneline --graph --all'`
-This might be useful to you.
+
+Ca pourra vous être utile.
