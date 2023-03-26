@@ -1,57 +1,57 @@
-# Git Kata: Basic Commits
-This kata will introduce you to the `git add` and `git commit` commands.
+# Git Kata: Les bases du *commit*
 
-This is a very introductory kata. if you have used `git status`, `git log --oneline --graph`, `git add` and `git commit` extensively you should probably skip it.
+Ce kata est une introduction aux commandes `git add` et `git commit`.
 
-You can look at the bottom of this file, if you have not yet done basic git configuration.
+C'est un kata pour débuter, si vous avez déjà utilisé `git status`, `git log --oneline --graph`, `git add` et `git commit` régulièrement vous pouvez probablement passer à la suite.
 
-## Setup:
+Si vous n'avez pas encore fait la configuration de base de git, regardez en bas de cette page.
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+## Mise en place
 
-## The task
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-1. Use `git status` to see which branch you are on.
-2. What does `git log` look like?
-3. Create a file
-4. What does the output from `git status` look like now?
-5. `add` the file to the staging area
-6. How does `git status` look now?
-7. `commit` the file to the repository
-8. How does `git status` look now?
-9. Change the content of the file you created earlier
-10. What does `git status` look like now?
-11. `add` the file change
-12. What does `git status` look like now?
-13. Change the file again
-14. Make a `commit`
-15. What does the `status` look like now? The `log`?
-16. Add and commit the newest change
+## Étapes
 
-## Useful commands
+1. Utilisez `git status` pour voir sur quelle branche vous vous trouvez
+1. A quoi ressemble `git log` ?
+1. Créez un fichier
+1. A quoi ressemble la sortie de `git status` maintenant ?
+1. Ajoutez le fichier à la zone de staging avec `git add`
+1. A quoi ressemble la sortie de `git status` maintenant ?
+1. Faites un `commit` du fichier dans le dépôt
+1. A quoi ressemble la sortie de `git status` maintenant ?
+1. Modifiez le contenu du fichier que vous avez créé tout à l'heure
+1. A quoi ressemble la sortie de `git status` maintenant ?
+1. Ajoutez la modification fichier à la zone de staging avec `git add`
+1. A quoi ressemble la sortie de `git status` maintenant ?
+1. Modifiez le fichier à nouveau
+1. Faites un `commit` (sans ajouter la dernière modification au staging)
+1. A quoi ressemble la sortie de `git status` maintenant ? Et celle de `git log` ?
+1. Ajoutez tu faites un commit du changement le plus récent
+
+## Commandes utiles
 - `git add`
 - `git commit`
-- `git commit -m "My commit message"`
+- `git commit -m "Mon message de commuit"`
 - `git log`
 - `git log -n 5`
 - `git log --oneline`
 - `git log --oneline --graph`
-- `touch filename` to create a file (or `sc filename ''` in PowerShell)
-- `echo content > file` to overwrite file with content (or `sc filename 'content'` in PowerShell)
-- `echo content >> file` to append file with content (or `ac filename 'content'` in PowerShell)
+- `touch filename` pour créer un fichier (ou `sc filename ''` sous PowerShell)
+- `echo content > file` pour écraser un fichier avec le contenu (ou `sc filename 'content'` sous PowerShell)
+- `echo content >> file` pour ajouter du contenu au fichier (ou `ac filename 'content'` sous PowerShell)
 
-
-## Git Initial Configuration
+## Configuration initiale de Git
 1. `git config --global user.name "John Doe"`
 1. `git config --global user.email "johndoe@example.com`
 
-For the vim scared:
+Si vim vous fait peur :
 - `git config --global core.editor nano`
 
-For the windows peeps:
+Pour les utilisateurs Windows :
 - `git config --global core.editor notepad`
 
-Other editor options:
+D'autres options :
 - `git config --global core.editor "atom --wait"`
 - `git config --global core.editor "code --wait"`
 - `git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst"`
