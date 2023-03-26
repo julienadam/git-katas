@@ -1,69 +1,69 @@
-# Squash commits
+# Git Kata: Grouper les commits avec le squashing
 
-In this kata I would like to clean up my history a bit.
+Dans ce kata on souhaite nettoyer un peu l'historique.
 
-The five newest commits all tinker with file.txt which obviously contains my feature.
+Les 5 derniers commits bricolent tous un peu le fichier `file.txt` qui contient la fonctionnalité.
 
-I would like these commits to be squashed into a single commit!
+J'aimerais grouper ces 5 commits en un seul.
 
-While you are at it I would really like the ugly `\n` characters inside `file.txt` to be removed from the history.
+Pendant que vous y êtes, j'aimerais vraiment que les caractères moches `\n`dans `file.txt` soient retirés de l'historique
 
-## Setup
+## Mise en place
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-## The task
+## Étapes
 
-1. _Squash_ the five relevant commits into one and make a good commit message (see Further information).
-2. How does `git log` look now?
-3. Clean up the `\n` characters inside `file.txt` without adding to the commit history.
+1. Faites un _squash_ des 5 commits en un et écrivez un bon message de commit (Voir plus bas la section *Plus d'informations*).
+1. A quoi ressemble `git log` ?
+1. Nettoyez les caractères `\n` dans `file.txt` **SANS AJOUTER** de commit à l'historique.
 
-## Useful commands
+## Commandes utiles
 
 - `git rebase -i <ref>`
 - `git add`
 - `git commit --amend`
 
-## Further information
+## Plus d'informations
 
-### The seven rules of a great Git commit message
+### 7 règles pour écrit un bon message de commit Git
 
-From [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+Tiré de [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
 
-1. Separate subject from body with a blank line
-2. Limit the subject line to 50 characters
-3. Capitalize the subject line
-4. Do not end the subject line with a period
-5. Use the imperative mood in the subject line
-6. Wrap the body at 72 characters
-7. Use the body to explain what and why vs. how
+1. Séparez le titre du corps du message avec une ligne vide
+1. Limitez la ligne de titre à 50 caractères
+1. Commencez le titre par une majuscule
+1. Ne terminez pas le titre avec un point
+1. Utilisez l'impératif dans le titre
+1. Retournez à la ligne après 72 caractères
+1. Utilisez le corps pour expliquer quoi et pourquoi et non pas comment
 
-Example
+Exemple
 ```
-Summarize changes in around 50 characters or less
+Résume les modifications en 50 caractères ou moins
 
-More detailed explanatory text, if necessary. Wrap it to about 72
-characters or so. In some contexts, the first line is treated as the
-subject of the commit and the rest of the text as the body. The
-blank line separating the summary from the body is critical (unless
-you omit the body entirely); various tools like `log`, `shortlog`
-and `rebase` can get confused if you run the two together.
+Texte explicatif plus détaillé, si nécessaire. Avec retour à la ligne 
+après 72 caractères. Dans certains contextes, la première ligne est
+traitée comme le sujet du commit et le reste du texte comme le corps.
+La ligne vide séparant le sujet du corps est très important (sauf si 
+vous ne mettez aucun corps). De nombreux outils comme `log`, `shortlog`
+et `rebase` se mélangent les pinceaux si vous l'oubliez.
 
-Explain the problem that this commit is solving. Focus on why you
-are making this change as opposed to how (the code explains that).
-Are there side effects or other unintuitive consequences of this
-change? Here's the place to explain them.
+Expliquez le problème que le commit résout. Focalisez vous sur pourquoi
+vous faites cette modification plutôt que sur comment (le code contient
+déjà l'information). Y a-t-il des effets de bords ou des conséquences
+contre-intuitives à cette modification ? C'est le bon moment pour les
+expliquer.
 
-Further paragraphs come after blank lines.
+Les paragraphes suivants sont séparés par des lignes vides.
 
- - Bullet points are okay, too
+ - Les listes sont valables également
 
- - Typically a hyphen or asterisk is used for the bullet, preceded
-   by a single space, with blank lines in between, but conventions
-   vary here
+ - Un tiret ou un astérisque sert de délimiteur pour les éléments de
+   la liste, précédé par un espace, mais les conventions varient
 
-If you use an issue tracker, put references to them at the bottom,
-like this:
+Si vous utilisez un système de ticket, mettez les références en base,
+comme ceci :
 
 Resolves: #123
 See also: #456, #789
