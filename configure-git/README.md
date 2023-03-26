@@ -35,6 +35,27 @@ Ou d'autres outils avec lesquels vous êtes à l'aise :
 - `git config --global core.editor "atom --wait"`
 - `git config --global core.editor "code --wait"`
 
+### Configuration de l'outil de fusion
+
+Lorsque Git devra résoudre des conflits ou afficher les différences entre fichiers, il pourra utiliser un outil de notre choix. Cet outil sera précieux pour visualiser et agir sur les différences graphiquement.
+
+Nous utiliserons DiffMerge, un outil gratuit, multi-plateforme édité par SourceGear.
+
+Commençons par installer l'outil : https://www.sourcegear.com/diffmerge/downloads.php
+
+Puis nous allons configurer git pour utiliser DiffMerge lorsque nous utiliserons les commandes `git difftool` ou `git mergetool`
+
+```sh
+git config --global difftool.diffmerge.cmd "sgdm $LOCAL $REMOTE"
+git config --global diff.tool "diffmerge"
+
+git config --global mergetool.diffmerge.cmd \ 
+"sgdm --merge --result=$MERGED $LOCAL $BASE $REMOTE"
+git config --global mergetool.diffmerge.trustexitcode true
+git config --global mergetool.keepbackup false
+git config --global merge.tool "diffmerge"
+```
+
 ### Aliases
 
 Vous pouvez mettre en place des alias de commande pour ne pas retaper les mêmes commandes longues et complexes à chaque fois :

@@ -1,25 +1,27 @@
-# Git kata: Amending commits
-When we are working, we make a lot of commits.
-Sometimes we just forget something obvious that we want to fix quickly.
+# Git kata: Amender un commit
 
-`git commit --amend` allows us to do that - tinker with the last commit we made.
+Au cours de notre travail nous allons faire beaucoup de commits.
 
-You can use `git log -p` or `git show` to inspect the contents of commits and file changes that were added to the commits.
+Parfois, on se rend compte qu'on a oublié un détail dans un commit que l'on vient de faire et on veut pouvoir le corriger.
 
-## Setup:
+`git commit --amend` est la commande pour gérer ce type de situation : corriger le dernier commit que l'on a fait.
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+Vous pouvez utiliser `git log -p` ou `git show` pour inspecter le contenu des commits et les changements sur les fichiers modifiés dans les commits.
 
-## The task
+## Mise en place
 
-1. What does `git status` tell us?
-2. What does `git log -p` tell us?
-3. Stage the addition of bar.txt
-4. Run `git commit --amend`
-5. What happened? What does `git log -p` tell us?
-6. What happens if you run `git commit --amend` again?
+1. Lancez `source setup.sh` (ou `.\setup.ps1` sous PowerShell)
 
-## Useful commands
+## Étapes
+
+1. Que nous dit `git status` ?
+2. Que nous dit `git log -p` ?
+3. Ajoutez bar.txt au staging
+4. Lancez `git commit --amend`
+5. Que s'est-t-il passé ? Que nous dit `git log -p` ?
+6. Que se passe-t-il si on essaye de lancer `git commit --amend` à nouveau ?
+
+## Commandes utiles
 
 - `git add`
 - `git log --oneline --graph`
