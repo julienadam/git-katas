@@ -27,7 +27,7 @@ Si vous n'avez pas encore fait la configuration de base de git, regardez en bas 
 1. Modifiez le fichier à nouveau
 1. Faites un `commit` (sans ajouter la dernière modification au staging)
 1. A quoi ressemble la sortie de `git status` maintenant ? Et celle de `git log` ?
-1. Ajoutez tu faites un commit du changement le plus récent
+1. Ajoutez et faites un commit du changement le plus récent
 
 ## Commandes utiles
 - `git add`
