@@ -12,7 +12,7 @@ A nouveau, vous êtes dans une branche dédiée, cette fois nous allons jongler 
 1. Affichez l'historique de la branche master
 1. Placez vous sur la branche `uppercase`
 1. Comparez l'historique avec celui de la branche `master` ?
-1. Faites un rebase de la branche `uppercase` sur `master` (`git rebase master`)
+1. Faites un rebase de la branche `master` sur `uppercase` (`git rebase master`)
 1. Que s'est-il passé ? Dessinez le !
 1. Placez vous maintenant sur la branche `master`
 1. Fusionnez la branche `uppercase` dans `master`
