@@ -39,7 +39,21 @@ Ou d'autres outils avec lesquels vous êtes à l'aise :
 
 Lorsque Git devra résoudre des conflits ou afficher les différences entre fichiers, il pourra utiliser un outil de notre choix. Cet outil sera précieux pour visualiser et agir sur les différences graphiquement.
 
-Nous utiliserons DiffMerge, un outil gratuit, multi-plateforme édité par SourceGear.
+#### Choix 1 : VS Code
+
+Si VS Code est installé, configurez-le ainsi : 
+
+```sh
+git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
+git config --global diff.tool "vscode"
+git config --global mergetool.vscode.cmd "code --wait $MERGED"
+git config --global mergetool.keepbackup false
+git config --global merge.tool "vscode"
+```
+
+#### Choix 2 : DiffMerge
+
+Sinon, nous utiliserons DiffMerge, un outil gratuit, multi-plateforme édité par SourceGear.
 
 Commençons par installer l'outil : https://www.sourcegear.com/diffmerge/downloads.php
 
@@ -49,8 +63,7 @@ Puis nous allons configurer git pour utiliser DiffMerge lorsque nous utiliserons
 git config --global difftool.diffmerge.cmd "sgdm $LOCAL $REMOTE"
 git config --global diff.tool "diffmerge"
 
-git config --global mergetool.diffmerge.cmd \ 
-"sgdm --merge --result=$MERGED $LOCAL $BASE $REMOTE"
+git config --global mergetool.diffmerge.cmd "sgdm --merge --result=$MERGED $LOCAL $BASE $REMOTE"
 git config --global mergetool.diffmerge.trustexitcode true
 git config --global mergetool.keepbackup false
 git config --global merge.tool "diffmerge"
