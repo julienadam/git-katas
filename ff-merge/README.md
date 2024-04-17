@@ -14,13 +14,14 @@ A nouveau, vous êtes dans une branche dédiée, cette fois nous allons jongler 
 1. Éditez le fichier greeting.txt pour qu'il contienne une salutation en majuscules.
 1. Ajoutez `greeting.txt`au staging et faites un commit
 1. Qu'affiche `git branch`?
-1. Qu'affiche `git log --oneline --graph --all`\
+1. Qu'affiche `git log --oneline --graph --all` ?
    *Souvenez-vous: vous voulez mettre à jour la branche master de manière à ce qu'elle contienne aussi les changements actuellement sur la feature branch. La commande `git merge [nom de branche]` prend un nom de branche en paramètre d'où les changements seront pris. La branche sur laquelle HEAD pointe actuellement (celle sur laquelle on se trouve) sera mise à jour avec les modifications présentes dans la branche passée en paramètre*
 1. Passez sur la branche `master`
-1. Utilisez `cat` pour regarder le contenu de `greetings.txt`
+1. Utilisez `cat` pour regarder le contenu de `greeting.txt`
 1. Faites un diff entre les branches
 1. Fusionnez les branches
-1. Utilisez `cat` pour regarder le contenu de `greetings.txt`
+1. Utilisez `cat` pour regarder le contenu de `greeting.txt`
+1. Qu'affiche `git log --oneline --graph --all` ?
 1. Effacez la feature branch
 
 ## Commandes utiles
