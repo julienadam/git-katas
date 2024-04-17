@@ -1,113 +1,80 @@
 # Git Katas: Subtree
 
-Subtree is a way to embed other git repository histories into your own by merging in the subtree history into yours. It also enables you to push patches to the subtree repository. This allows you to grab source change directly via merging histories, as well as _pushing_ them back.
+Subtree est un moyen d'incorporer l'historique d'un autre dépôt git dans votre dépôt en fusionnant les commits. Il permet également de pousser des correctifs vers le dépôt du subtree. On pourra donc synchroniser dans les deux sens le contenu de ce dépôt.
 
-This feature is useful if you decide that for instance a specific folder should be a repository on its own because other repositories/projects would need it.
+Cette fonctionnalité est utile quand on souhaite partager un répertoire entre plusieurs dépôts.
 
-## Setup
+## Mise en place
 
-1. Run `./setup.sh`
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-> NOTE: If running setup.sh on windows, you can run into problems by sourcing the setup script. Instead, run `./setup.sh`, and the folders would be created correctly.
+## Étapes
 
-## Tasks
+### Ajout du subtree
 
-###  Add subtree
+Au départ, vous avez 2 dépôts dans le répertoire `exercise`:
 
-After running `. setup.sh` or `. ./setup.sh`, you'll have two repositories that we will use for this exercise.
+- `product` : dépôt contenant l'historique du produit
+- `component`: dépôt contenant l'historique du composant
 
-INFO: You now have the following under the `excercise` directory:
-* A `product` repository that contains the "product" history.
-* A `component` repository that contains the "component" history.
+Exercice
 
-Exercise
-* Go to the `component` repository and run `git log` and notice the history.
-* Go to the `product` repository and run `git log` and notice the history.
-* Add the `component` repo as a remote reference: `git remote add component ../component/.git` ( optional, but good practice )
-* Check the remotes using `git remote -v` and it should look like this:
+1. Consultez l'historique du composant
+1. Consultez l'historique du produit
+1. Ajoutez le composant en tant que *remote* avec la commande : `git remote add component ../component/.git`
+1. Vérifiez les remote avec `git remote -v`, vous devez obtenir à peu près ceci :
 
-```
-$ git remote -v
-component       ../component/.git (fetch)
-component       ../component/.git (push)
-```
-* Add the `component` history to the this repository (`product`) under the directory `component`: `git subtree add --prefix component component master` . You should see something like this:
-```
-git fetch component master
-warning: no common commits
-remote: Enumerating objects: 3, done.
-remote: Counting objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), 224 bytes | 18.00 KiB/s, done.
-From ../component/
- * branch            master     -> FETCH_HEAD
- * [new branch]      master     -> component/master
-Added dir 'component'
-```
-* Please explain what happend and what the result is. Consider running this command in both `product` and `component` repositories. `git log --graph --oneline --all
-` and explain the common history and the newest commit in `product`.
+    ```txt
+    $ git remote -v
+    component       ../component/.git (fetch)
+    component       ../component/.git (push)
+    ```
 
-### Pull in new commits from subtree
-We have added the `component` subtree to the `component` directory also named a `prefix`in subtree terms. We now want add changes to the `component` and integrate them into the `product`
+1. Ajoutez l'historique du composant dans le dépôt dans un sous-répertoire `component` qui sera placé sous le répertoire `product` avec la commande : `git subtree add --prefix component component master` . Vous devriez obtenir un résultat de ce type :
 
-* Go to the `component` repository
-* Make changes and commit them
-* Go to the `product` repository and pull in the changes with this command: `git subtree pull --prefix component component master`
-```
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (3/3), 276 bytes | 5.00 KiB/s, done.
-From ../component/
- * branch            master     -> FETCH_HEAD
-   99d28dd..a930ba9  master     -> component/master
-Merge made by the 'recursive' strategy.
- component/component.h | 1 +
- 1 file changed, 1 insertion(+)
-```
-* Please explain what happend and what the result is. Consider running this command in both `product` and `component` repositories.
-  `git log --graph --oneline --all` and explain the common history and the newest commits in `product`.
+    ```txt
+    git fetch component master
+    warning: no common commits
+    remote: Enumerating objects: 3, done.
+    remote: Counting objects: 100% (3/3), done.
+    remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+    Unpacking objects: 100% (3/3), 224 bytes | 18.00 KiB/s, done.
+    From ../component/
+    * branch            master     -> FETCH_HEAD
+    * [new branch]      master     -> component/master
+    Added dir 'component'
+    ```
 
-### Modify component directory and push commits to component repository
-We have updated `component` directory from the `component` repository. We now want to modify the `component` directory and deliver the changes to the `component` repository. NOTE: We push to a new branch.
+1. Expliquez ce qui s'est passé. Consultez l'historique des deux dépôts avec `git log --graph --oneline --all` et expliquez l'historique commun et le dernier commit de `product`.
 
-* Go to the `product` repository.
-* Go to the `component` directory and make changes and commit them.
-* We want to deliver the changes just made to the `component` repository using this command: `git subtree push --prefix component component patch`.
-```
-git push using:  component patch
-Enumerating objects: 5, done.
-Counting objects: 100% (5/5), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 357 bytes | 357.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-To ../component/.git
- * [new branch]      e6fb29fe9a6213a9806e86195c609ba0bfd94249 -> patch
-```
+### Récupérer des commits depuis le subtree
 
-* Please explain what happend and what the result is. Consider running this command in both `product` and `component` repositories.
-  `git log --graph --oneline --all` and explain the common history and the newest commits in `product`.
-* Why do we push to a new branch?
-* How would you do it if you not owner nor collaborator on the `component` repository on for example GitHub?
+Les opérations précédentes ont au final créé un répertoire `component` dans le dépôt `product` en tant que subtree, on nomme également ce type de répertoire un `prefix`. Nous allons maintenant modifier le composant et intégrer les modifications dans le produit.
 
-## Useful commands
+1. Dans le dépôt `component` faites une modification et un commit
+1. Dans le dépôt `product` récupérez les modifications avec la commande : `git subtree pull --prefix component component master`
+1. Expliquez ce qui s'est passé. Consultez l'historique des deux dépôts avec `git log --graph --oneline --all` et expliquez l'historique commun et le dernier commit de `product`.
+
+### Pousser des commits vers le subtree
+
+Dans l'autre sens, on veut maintenant faire de modifications dans le subtree et les pousser vers le dépôt `component. Dans l'exercice nous pousserons vers une branche.
+
+1. Dans le dépôt `product`, placez vous dans le répertoire `component`, faites un changement et un commit.
+1. Poussez le commit avec la commande : `git subtree push --prefix component component patch`
+1. Expliquez ce qui s'est passé. Consultez l'historique des deux dépôts avec `git log --graph --oneline --all` et expliquez l'historique commun et le dernier commit de `product`.
+1. Pourquoi pousser vers une branche ?
+1. Et si vous n'étiez pas propriétaire du dépôt `component`, comment feriez-vous ?
+
+## Commandes utiles
 
 * `git log --graph --oneline --all`
 * `git subtree add --prefix component component master`
 * `git remote add component ../component/.git`
 * `git subtree push --prefix <prefix/directory> <repo> <branch>`
 
-## Run all the exercises as a script
+## Ressources
 
-Run all the above commands to see the commands and their results.
-```
-replay=true debug=true ./setup.sh
-```
+Quelques liens utiles :
 
-## Resources
-
-We found some resources that may assist you in understanding this feature of Git better.
-
-* https://github.com/git/git/blob/master/contrib/subtree/git-subtree.txt
-* https://blog.developer.atlassian.com/the-power-of-git-subtree/
+- <https://github.com/git/git/blob/master/contrib/subtree/git-subtree.txt>
+- <https://blog.developer.atlassian.com/the-power-of-git-subtree/>
