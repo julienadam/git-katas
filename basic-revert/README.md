@@ -15,7 +15,7 @@ Dans cet exercice, quelques modifications se sont glissées dans l'historique qu
 1. Est-ce que la commande revert a ajouté ou retiré un commit ?
 1. Utilisez `cat` pour voir le contenu de `greeting.txt`
 1. Utilisez `ls` pour inspecter le contenu du répertoire de travail
-1. Utilisez `git log --oneline` pour trouver le has du commit qui a ajouté les identifiants au répertoire
+1. Utilisez `git log --oneline` pour trouver le hash du commit qui a ajouté les identifiants au répertoire
 1. Utilisez `git revert` pour annuler le commit qui a ajouté les identifiants.
 1. Utilisez `git log --oneline` pour regarder l'historique
 1. Utilisez `ls` pour inspecter le contenu du répertoire de travail
