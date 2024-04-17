@@ -22,29 +22,8 @@ Exercice
 1. Consultez l'historique du composant
 1. Consultez l'historique du produit
 1. Ajoutez le composant en tant que *remote* avec la commande : `git remote add component ../component/.git`
-1. Vérifiez les remote avec `git remote -v`, vous devez obtenir à peu près ceci :
-
-    ```txt
-    $ git remote -v
-    component       ../component/.git (fetch)
-    component       ../component/.git (push)
-    ```
-
-1. Ajoutez l'historique du composant dans le dépôt dans un sous-répertoire `component` qui sera placé sous le répertoire `product` avec la commande : `git subtree add --prefix component component master` . Vous devriez obtenir un résultat de ce type :
-
-    ```txt
-    git fetch component master
-    warning: no common commits
-    remote: Enumerating objects: 3, done.
-    remote: Counting objects: 100% (3/3), done.
-    remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-    Unpacking objects: 100% (3/3), 224 bytes | 18.00 KiB/s, done.
-    From ../component/
-    * branch            master     -> FETCH_HEAD
-    * [new branch]      master     -> component/master
-    Added dir 'component'
-    ```
-
+1. Vérifiez les remote avec `git remote -v`
+1. Ajoutez l'historique du composant dans le dépôt dans un sous-répertoire `component` qui sera placé sous le répertoire `product` avec la commande : `git subtree add --prefix component component master`.
 1. Expliquez ce qui s'est passé. Consultez l'historique des deux dépôts avec `git log --graph --oneline --all` et expliquez l'historique commun et le dernier commit de `product`.
 
 ### Récupérer des commits depuis le subtree
@@ -67,10 +46,10 @@ Dans l'autre sens, on veut maintenant faire de modifications dans le subtree et 
 
 ## Commandes utiles
 
-* `git log --graph --oneline --all`
-* `git subtree add --prefix component component master`
-* `git remote add component ../component/.git`
-* `git subtree push --prefix <prefix/directory> <repo> <branch>`
+- `git log --graph --oneline --all`
+- `git subtree add --prefix component component master`
+- `git remote add component ../component/.git`
+- `git subtree push --prefix <prefix/directory> <repo> <branch>`
 
 ## Ressources
 
