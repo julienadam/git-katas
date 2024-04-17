@@ -1,21 +1,21 @@
 # Rebase Exec
 
-## Setup
+## Mise en place
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-## Task
+## Étapes
 
-Doing local development we've created a bunch of commits. We would like to deliver them all to master. We would also like all commits to pass our tests.
+En local, nous avons créé une série de commits. On souhaite les envoyer en master mais également les tester un à un.
 
-Our test suite is contained in `test.sh`. We can use `git rebase --exec` to run the test suite for all commits. We have tagged the first commit in our history with `initial-commit`.
+Notre suite test est contenue dans le fichier `test.sh`. On va utiliser `git rebase --exec` pour exécuter la suite de test sur chaque commit au fur et à mesure du déroulement de l'opération de rebase. un tag `initial-commit` a été posé sur le premier commit dans l'historique.
 
-1. Run the test script using `./test.sh` to see the most recent commit succeed
-1. Use `git rebase -i --exec ./test.sh initial-commit` to run the test script on all commits. You will be shown the plan, you do not need to change anything.
-1. The tests will run, and fail on a single commit. The tests fail because the test script changes. So you need to fix it
-1. Change the following strings in `test.sh`
-    - `One test failed` to `all tests pass`
-    - `exit 1` to `exit 0`
-1. Stage `test.sh` and use `git commit --amend` to fix the broken commit
-1. Run `git rebase --continue` to execute the test suite on the remaining commits
-1. You may run `verify.sh` (or `verify.ps1` in PowerShell) to verify your solution
+1. Lancez le script de test `./test.sh` pour vérifier que le commit le plus récent passe bien les tests.
+1. Utilisez `git rebase -i --exec ./test.sh initial-commit` pour lancer le rebase en mode interactif avec lancement du script de test sur tous les commits. Il n'y a rien à changer dans la proposition qui est faite par git.
+1. Les tests vont se lancer et échouer sur un commit particulier. Ils échouent parce que le script est modifié dans ce commit. Il faudra le réparer.
+1. Modifiez dans `test.sh`
+    - `One test failed` en `all tests pass`
+    - `exit 1` en `exit 0`
+1. Mettez `test.sh` en staging puis modifiez le commit avec `git commit --amend` pour réparer le script de test.
+1. Exécutez `git rebase --continue` pour continuer la validation
+1. Vous pouvez lancer `verify.sh` (ou `verify.ps1` sous PowerShell) pour valider votre solution.

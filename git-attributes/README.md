@@ -1,49 +1,40 @@
-# Git Kata: Git attributes file
+# Git Kata: Le fichier Git attributes
 
-We'll work a bit with the [`.gitattributes`](https://www.git-scm.com/docs/gitattributes)
-file in this kata. In this file, you're able to specify how git handles files, e.g., if they
-are binary or text files. For instance, it's possible to describe what type of
-line ending that should be used, or if you have some binary files in your repository,
-you can specify what program that should be used for showing the diff. The following exercises
+Nous allons travailler avec le fichier [`.gitattributes`](https://www.git-scm.com/docs/gitattributes)
+dans ce kata. Dans ce fichier, vous pouvez spécifier comment git doit gérer certains types de fichiers. Par exemple, quel type de délimiteur de ligne utiliser pour un fichier texte (CRLF ou LF), ou quel outil de diff utiliser pour certains fichiers binaires.
+
+Les exercices suivants ne sont valables que sur GNU/Linux ou Mac.
 are for GNU/Linux platforms and Mac.
 
-## Setup
+## Mise en place
 
-1. Run `source setup.sh` (or `.\setup.ps1` in PowerShell)
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-## The task
+## Étapes
 
-1. Create a `.gitattributes` file with the following content:
+1. Créez un fichier `.gitattributes` avec le contenu suivant:
 
     `*.txt      text=auto eol=lf working-tree-encoding=UTF-8`
 
-2. Run `git add file1.txt .gitattributes` and you should see
+2. Lancez `git add file1.txt .gitattributes`, vous  allez voir le message suivant :
 
     `warning: CRLF will be replaced by LF in file1.txt.`
 
-3. Try to experiment changing `eol` to either `auto` or `crlf`. Can you explain
-   why only one of them changes the line endings of the file, i.e., gives a
-   similar warning as above.
+3. Modifiez `eol` en `auto` ou `crlf`. Expliquez pourquoi une seule des options produit le message ci-dessus.
 
-4. Some files must have DOS (CRLF) line endings in order to work. One such example
-   is bat-files, e.g., Jenkins requires the line endings in bat-files to be CRLF before
-   being able to run them.
-
+4. Certains fichiers doivent avoir des délimiteurs de ligne DOS (CRLF) pour fonctionner. Typiquement les fichier .bat. on utilisera alors ce type de configuration :
    `*.bat      text=auto eol=crlf`
 
-   A similar problem is present with Linux scripts using a shebang in the first line to point
-   to an interpreter. GNU/Linux systems will have a problem running them, e.g., `bash\r` is not
-   recognized as an interpreter.
+   Un problème similaire, en miroir, se pose lorsqu'on travaille avec des scripts Linux contenant un *shebang* qui définit l'interpréteur.
+   Si le fichier utilise des délimiteurs CRLF, le script ne s'exécutera pas car le CR sera compris comme un caractère et non pas comme une fin de ligne.
 
-   Note: The line endings can also be controlled through
-   [`git config`](https://www.git-scm.com/book/en/v2/Customizing-Git-Git-Configuration) but that is a different topic.
+5. Git est principalement prévu pour les fichiers texte mais peut tout à fait gérer des fichiers binaires et il est possible de définir une commande de diff spécifique pour certains fichiers.
 
-5. Git is mostly suitable for text files, but it can also handle binary files and you can set programs to show the diff.
-   In this example, we are going to use the command line tool `exiftool` to show and compare meta-data for iamges. You will need to have this tool installed for the example to work. (There is also a similar tool called just `exif` which would also work, but only for `jpg` files). If you don't have exiftool already it is usually quite easy to install with your favorite package manager e.g. `brew install exiftool` or `apt install exiftool`
+   Dans cet exemple, on va utiliser `exiftool` pour afficher et comparer les meta-donnés de fichiers d'image. Vous aurez besoin de cet outil pour réaliser l'exercice. Vous pouvez l'installer simplement avec `apt install exiftool` ou `brew install exiftool`.
 
-   Once we have exiftool installed, we will need to configure a new "diff driver" in the git config that uses exiftool to "convert" a binary file to a text representation that can be diff'ed.
+   Une fois installé, on va configurer un driver de diff dans la configuration git pour utiliser `exiftool` afin de "convertir" l'image en texte qui pourra être comparé.
 
-   Add the following to your global ~/.gitconfig or to the local .git/config file.
+   Ajoutez les lignes suivantes dans votre `~/.gitconfig` ou dans le fichier local `.git/config`.
 
    ```shell
    [diff "useexif"]
@@ -51,42 +42,35 @@ are for GNU/Linux platforms and Mac.
    cachetextconv = true
    ```
 
-   Then we need to actually tell Git to use this new "driver" for any files of the type `PNG`. Add the following to the .gitattributes file you created at the start of the exercise:
+   Il ne reste plus qu'à définir ce "driver" pour les fichiers de type `PNG`. Ajoutez la ligne suivante au fichier `.gitattributes` créé en début d'exercice :
 
    ```shell
    *.png diff=useexif
    ```
 
-## Advanced bonus task
+6. On peut maintenant tester l'ensemble
 
-6. Now that everything is set up, let us test it out.
-   You can use the image mario.png located next to this README file. ( Mario png borrowed from <https://www.freepngimg.com/download/mario/20698-7-mario-transparent-background.png> )
+   Vous pouvez utiliser l'image mario.png située dans le même répertoire que ce README. ( Mario png tiré de <https://www.freepngimg.com/download/mario/20698-7-mario-transparent-background.png> )
 
    ![Mario large](mario.png)
 
-   Copy/move this image to the exercise folder (e.g. with `cp ../mario.png .`), then use `git add` to stage the image and put it under Git's control.
+   Copiez l'image vers le répertoire de l'exercice avec `cp ../mario.png .`, utilisez `git add` pour mettre l'image en staging.
 
-   Now we can run `git diff --staged` to view the change, and hopefully Git will print out the full `exiftool` output in green as it is comparing to the previous (non-existing) /dev/null version.
+   `git diff --staged` va maintenant afficher un diff en comparant la version en staging avec la version précédente (inexistante donc /dev/null).
 
-7. To really see the value, replace the image with a different one, e.g., using the smaller version of the image also in this folder:
+   Faites un commit.
+
+7. Pour vraiment voir l'intérêt de l'outil, remplacez l'image par une autre image et comparez les deux versions. Par exemple en utilisant l'image `mario-small.png`.
 
    ![Mario small](mario-small.png)
 
-   If you copy this file to the exerise folder and rename it to `mario.png` Git will correctly see it as a changed file. (you can do this easily using `cp ../mario-small.png ./mario.png` to get the smaller one and overwrite the existing)
+   Exécutez `cp ../mario-small.png ./mario.png` pour écraser la version actuelle avec la version *small*. Git va correctement détecter un changement.
 
-   Now, just run the regular `git diff` to have Git compare the new smaller one with the original that is currently staged. It should be easy to see which attributes of the image were changed in the resize.
+   Lancez git diff, il va maintenant comparer le contenu des méta-données EXIF et nous permettra de voir sous forme textuelle les différences dans les attributes de l'image
 
-## Useful commands
+## Commandes utiles
 
 - `file file1.txt` (on GNU/Linux and Mac)
 - `git add`
 - `git status`
-- `iconv` is useful for converting between different character encodings.
-
-## Additional information
-
-The `.gitattributes` has another alternative, if you are just interested in
-having the same line endings and character encodings across the files in your
-repository. [editorconfig](https://editorconfig.org/) can handle indentation
-size (useful for Python), whether to use tabs or spaces, adding a final newline
-etc.
+- `iconv` pour convertir entre plusieurs formats d'encodage
