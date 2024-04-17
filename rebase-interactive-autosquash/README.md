@@ -1,33 +1,35 @@
 # Git katas: Interactive rebase with --autosquash option
-You have worked on a new feature called Hello World.
-This features ends up being complete with both documentation and unit test, but there is a typo in the documentation.
 
-You need to fix it and then rebase to have a beautiful history.
+Vous avez travaillé sur une nouvelle fonctionnalité nommée Hello World.
 
-Luckily we have a release tag `v0.0` from just before we started the feature.
+La fonctionnalité est terminée (avec documentation et tests !) mais il y a une erreur de frappe dans la documentation.
 
-There is a way to easily fix it with advanced options for `git commit` and `git rebase`.
+Il faut réparer ça et faire un rebase pour obtenir un historique parfait.
 
-## Setup:
+Par chance, il existe un tag `v0.0` posé juste avant de travailler sur la fonctionnalité.
 
-1. Run `. setup.sh` (or `.\setup.ps1` in PowerShell)
+Avec quelques options avancées de `git commit` et `git rebase` nous allons pouvoir réaliser cette modification sans difficulté.
 
-## Task
+## Mise en place
 
-1. Explore the repo and the history so you know when the documentation file was added.
-2. Fix `README.md` file and add it.
-3. Add your commit by using `git commit --fixup=<commit id to be fixed>`.
-4. Use `git rebase --autosquash --interactive v0.0` to view the rebase recipe automatically generated.
-5. Use `git log` to view your new beautiful history.
+1. Lancez le script `source setup.sh` sous Linux ou `.\setup.ps1` dans PowerShell sous Windows
 
-### useful commands
+## Étapes
 
-- `ls -l`                           # list files
-- `tail -n +1 *`                    # show content of all files
-- `git log --oneline`               # show history
-- `git log --stat`                  # log which files changed
-- `git log --patch`                 # log with diff
-- `git show <commit id>`            # show changes of a commit
-- `git add`                         # add file
-- `git commit --fixup=<commit id>`  # commit by autogenerating the message
-- `git rebase -i <ref>`             # run the interactive rebase back to <ref> and automaticaly reorder commits
+1. Explorez le dépôt et l'historique pour trouver dans quel commit le fichier de documentation a été ajouté.
+2. Corrigez le `README.md` et mettez le en staging.
+3. Créez le commit avec la commande `git commit --fixup=<id du commit à corriger>`.
+4. Lancez `git rebase --autosquash --interactive v0.0` pour afficher la recette de rebase générée automatiquement.
+5. Utilisez `git log` pour constater la beauté de l'historique corrigé.
+
+### Commandes utiles
+
+- `ls -l`                           # lister les fichiers
+- `tail -n +1 *`                    # afficher le contenu des fichiers
+- `git log --oneline`               # afficher l'historique
+- `git log --stat`                  # historique avec résumé des changements
+- `git log --patch`                 # historique avec diff
+- `git show <commit id>`            # modifications d'un commit
+- `git add`                         # mettre un fichier en staging
+- `git commit --fixup=<commit id>`  # créer un commit avec un message auto-généré
+- `git rebase -i <ref>`             # procéder à un rebase vers <ref> et réordonner les commits automatiquement
