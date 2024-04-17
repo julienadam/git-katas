@@ -1,6 +1,6 @@
 # Git Kata: Les bases du cherry picking
 
-Dans ce kata, on veut a deux branches, `master` et `feature`. On a travaillé et progressé sur ces branches indépendamment. Cependant, il y a quelques changements dans la branche `feature` qu'on voudrait appliquer sur `master` dès maintenant, sans fusionner l'ensemble de la branche `feature`.
+Dans ce kata, on a deux branches, `master` et `feature`. On a travaillé et progressé sur ces branches indépendamment. Cependant, il y a quelques changements dans la branche `feature` qu'on voudrait appliquer sur `master` dès maintenant, sans fusionner l'ensemble de la branche `feature`.
 
 Git possède une fonctionnalité permettant de ne prendre que tel ou tel changement, nommé `cherry-pick`. On dit à git quels commits on souhaite sélectionner et git va ajouter les changements de ce commit sur la branche courante.
 
