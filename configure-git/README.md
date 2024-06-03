@@ -44,11 +44,11 @@ Lorsque Git devra résoudre des conflits ou afficher les différences entre fich
 Si VS Code est installé, configurez-le ainsi : 
 
 ```sh
-git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
-git config --global diff.tool "vscode"
-git config --global mergetool.vscode.cmd "code --wait $MERGED"
+git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
+git config --global diff.tool 'vscode'
+git config --global mergetool.vscode.cmd 'code --wait $MERGED'
 git config --global mergetool.keepbackup false
-git config --global merge.tool "vscode"
+git config --global merge.tool 'vscode'
 ```
 
 #### Choix 2 : DiffMerge
